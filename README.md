@@ -2,6 +2,7 @@
 A basic example of using TensorRT version >= 8.5
 
 ## 1. Environment
+- Ubuntu: 22.04 LTS
 - CUDA: 11.5
 - CuDNN: 8.6.0
 - TensorRT: 8.5.3.1
