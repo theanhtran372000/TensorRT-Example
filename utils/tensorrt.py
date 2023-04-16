@@ -31,7 +31,7 @@ def build_serialized_engine(
         config = builder.create_builder_config()
         # allow TensorRT to use up to 1GB of GPU memory for tactic selection
         if workspace_size != 0:
-            # TensorRT >= 8.6
+            # TensorRT >= 8.5
             # config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, workspace_size << 30) 
             pass
         # use FP16 mode if possible
