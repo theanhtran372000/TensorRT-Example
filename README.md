@@ -1,11 +1,12 @@
 # TensorRT Example
-A basic example of using TensorRT version >= 8.5
+A basic example of using TensorRT version 8.2 on Jetson Nano
 
 ## 1. Environment
-- CUDA: 11.5
-- CuDNN: 8.6.0
-- TensorRT: 8.5.3.1
-- PyCUDA: 2022.2.2
+- Ubuntu: 18.04
+- CUDA: 10.2
+- CuDNN: 8.2.1
+- TensorRT: 8.2.1.8
+- PyCUDA: 2022.1
 
 ## 2. Resources
 - ONNX model: [Google Drive](https://drive.google.com/file/d/1zcZvyroSZcIgzNkFngEHdekY79ptEQxs/view?usp=share_link)

@@ -31,7 +31,9 @@ def build_serialized_engine(
         config = builder.create_builder_config()
         # allow TensorRT to use up to 1GB of GPU memory for tactic selection
         if workspace_size != 0:
-            config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, workspace_size * (1024 * 1024))
+            # TensorRT >= 8.6
+            # config.set_memory_pool_limit(trt.MemoryPoolType.WORKSPACE, workspace_size << 30) 
+            pass
         # use FP16 mode if possible
         if builder.platform_has_fast_fp16:
             config.set_flag(trt.BuilderFlag.FP16)
@@ -65,11 +67,20 @@ def build_deserialized_engine(logger, engine_path):
     
     return engine
 
-def create_context(engine, stream_handle, input_shape, input_name='input'):
+# For TensorRT >= 8.5
+def create_context_v2(engine, stream_handle, input_shape, input_name='input'):
     context = engine.create_execution_context()
     context.set_optimization_profile_async(0, stream_handle)
     context.set_input_shape(input_name, trt.Dims4(list(input_shape)))
     return context
+
+# For TensorRT 8.2
+def create_context_v1(engine, stream_handle, input_shape, binding=0):
+    context = engine.create_execution_context()
+    context.set_optimization_profile_async(0, stream_handle)
+    context.set_binding_shape(binding, trt.Dims4(list(input_shape)))
+    return context
+
 
 def get_logger():
     # Logger to capture errors, warnings and other infomation

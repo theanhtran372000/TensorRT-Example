@@ -1,8 +1,8 @@
 import cv2
-import torch
 from albumentations import Resize, Compose
 from albumentations.pytorch.transforms import ToTensorV2
 from albumentations.augmentations.transforms import Normalize
+import torch
 
 def preprocess_image(img_path):
     # Transform for image
